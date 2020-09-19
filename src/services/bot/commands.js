@@ -7,7 +7,8 @@ const onCreateGroup = (message) => {
         msg.react('✌');
     });
 
-    message.guild.createChannel(message.author.username, 'text');
+    const server = message.guild;
+    server.createChannel(message.author.username, 'text');
 
     message.awaitReactions((reaction, user) => (reaction.emoji.name == '✌'), 
     { max: 10, time: 0, errors: ['time'] })
