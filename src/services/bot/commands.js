@@ -7,7 +7,7 @@ const onCreateGroup = (message) => {
         msg.react('✌');
     });
 
-    guild.channels.create(message.author.username, {
+    message.guild.channels.create(message.author.username, {
         type:   'text',
         parent: '466734004318502934'
     })
