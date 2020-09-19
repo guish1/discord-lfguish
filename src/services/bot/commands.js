@@ -2,20 +2,24 @@ const { createMessageEmbed } = require('../messages/embed');
 
 const onCreateGroup = (message) => {
     const embed = createMessageEmbed('Create group');
-    const group_name = "group-" + Math.random();
+    const group_name = "group-" + (Math.random() * 101);
     embed.addField('Name', group_name);
     message.channel.send({ embed }).then(function(msg) {
         msg.react('✌');
     });
 
-    message.guild.roles.create(group_name);
+    message.guild.roles.create({
+        data: {
+            name:   group_name,
+        }
+    });
 
     message.guild.channels.create(group_name, {
         type:   'text',
         parent: '466734004318502934',
         permissionOverwrites: [
             {
-                id:     message.guild.roles.everyone,
+                id:     466731372757909514,
                 deny:   ['VIEW_CHANNEL'] 
             },
             {
