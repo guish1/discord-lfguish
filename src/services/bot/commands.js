@@ -2,7 +2,7 @@ const { createMessageEmbed } = require('../messages/embed');
 
 const onCreateGroup = (message) => {
     const embed = createMessageEmbed('Create group');
-    const group_name = "group-" + (Math.random() * 101);
+    const group_name = "group-1";
     embed.addField('Name', group_name);
     message.channel.send({ embed }).then(function(msg) {
         msg.react('✌');
@@ -22,10 +22,6 @@ const onCreateGroup = (message) => {
                 id:     466731372757909514,
                 deny:   ['VIEW_CHANNEL'] 
             },
-            {
-                id:     group_name,
-                allow:  ['VIEW_CHANNEL']
-            }
         ]
     })
 
