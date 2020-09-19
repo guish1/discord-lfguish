@@ -2,8 +2,8 @@ const Discord = require("discord.js");
 const client = new Discord.Client(); 
 
 const {
-    onStartRaid,
-  } = require('./services/bot/commands');
+    onCreateGroup,
+  } = require('./src/services/bot/commands');
 
 client.on("ready", () => {
     client.user.setActivity('!commands me');
