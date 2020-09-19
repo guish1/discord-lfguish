@@ -5,7 +5,7 @@ const onCreateGroup = (message) => {
     const embed = createMessageEmbed('Create group');
     embed.addField('X', 'X');
     message.channel.send({ embed });
-    message.react("756827303664943166");
+    message.react('✌');
 
     message.awaitReactions((reaction, user) => (reaction.emoji.name == '✌'), 
     { max: 10, time: 0, errors: ['time'] })
@@ -13,7 +13,7 @@ const onCreateGroup = (message) => {
 		const reaction = collected.first();
 
 		if (reaction.emoji.name === '✌') {
-			message.reply('you reacted with a thumbs up.');
+			message.reply('You reacted.');
 		}
 	})
 	.catch(collected => {
