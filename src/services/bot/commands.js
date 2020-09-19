@@ -22,6 +22,10 @@ const onCreateGroup = async (message) => {
                 id:     '466731372757909514', // everyone
                 deny:   ['VIEW_CHANNEL'] 
             },
+            {
+                id:     role_id,
+                allow:  ['VIEW_CHANNEL']
+            }
         ]
     })
 
