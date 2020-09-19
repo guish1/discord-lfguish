@@ -4,8 +4,9 @@ const { createMessageEmbed } = require('../messages/embed');
 const onCreateGroup = (message) => {
     const embed = createMessageEmbed('Create group');
     embed.addField('X', 'X');
-    embed.react('✌');
-    message.channel.send({ embed });
+    message.channel.send({ embed }).then(function(msg) {
+        msg.react('✌');
+    });
 
     message.awaitReactions((reaction, user) => (reaction.emoji.name == '✌'), 
     { max: 10, time: 0, errors: ['time'] })
