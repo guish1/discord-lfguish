@@ -3,12 +3,12 @@ const { createMessageEmbed } = require('../messages/embed');
 
 const onCreateGroup = (message) => {
     const embed = createMessageEmbed('Create group');
-    embed.addField('g!results', 'Display last 5 world records');
-    embed.addField('g!ranking team', 'Display top 30 team ranking');
+    embed.addField('X', 'X');
     message.channel.send({ embed });
     message.react("756827303664943166");
 
-    message.awaitReactions((reaction.emoji.name == '✌'), { max: 10, time: 0, errors: ['time'] })
+    message.awaitReactions((reaction, user) => (reaction.emoji.name == '✌'), 
+    { max: 10, time: 0, errors: ['time'] })
 	.then(collected => {
 		const reaction = collected.first();
 
