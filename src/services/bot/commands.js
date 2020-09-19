@@ -8,7 +8,7 @@ const onCreateGroup = (message) => {
     message.channel.send({ embed });
     message.react("756827303664943166");
 
-    message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+    message.awaitReactions((reaction.emoji.name == '✌'), { max: 10, time: 0, errors: ['time'] })
 	.then(collected => {
 		const reaction = collected.first();
 
