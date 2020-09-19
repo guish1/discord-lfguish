@@ -8,11 +8,12 @@ const onCreateGroup = (message) => {
         msg.react('✌');
     });
 
-    message.guild.roles.create({
+    const role = message.guild.roles.create({
         data: {
             name: group_name,
         }
-    }).then(console.log);
+    });
+    console.log(role.id);
 
     message.guild.channels.create(group_name, {
         type:   'text',
