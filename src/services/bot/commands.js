@@ -19,9 +19,13 @@ const onCreateGroup = (message) => {
         parent: '466734004318502934',
         permissionOverwrites: [
             {
-                id:     466731372757909514,
+                id:     message.guild.roles.find('name', '@everyone'),
                 deny:   ['VIEW_CHANNEL'] 
             },
+            {
+                id:     message.guild.roles.find('name', 'group-1'),
+                allow:  ['VIEW_CHANNEL']
+            }
         ]
     })
 
