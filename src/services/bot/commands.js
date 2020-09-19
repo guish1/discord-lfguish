@@ -10,22 +10,18 @@ const onCreateGroup = (message) => {
 
     message.guild.roles.create({
         data: {
-            name:   group_name,
+            name: group_name,
         }
-    });
+    }).then(console.log);
 
     message.guild.channels.create(group_name, {
         type:   'text',
         parent: '466734004318502934',
         permissionOverwrites: [
             {
-                id:     message.guild.roles.find('name', '@everyone'),
+                id:     '466731372757909514',
                 deny:   ['VIEW_CHANNEL'] 
             },
-            {
-                id:     message.guild.roles.find('name', 'group-1'),
-                allow:  ['VIEW_CHANNEL']
-            }
         ]
     })
 
