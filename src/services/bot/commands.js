@@ -13,7 +13,7 @@ const onCreateGroup = (message) => {
             name: group_name,
         }
     });
-    console.log(role.id);
+    console.log(message.guild.roles.cache.find(r => r.name === group_name));
 
     message.guild.channels.create(group_name, {
         type:   'text',
