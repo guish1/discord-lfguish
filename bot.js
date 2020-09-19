@@ -3,12 +3,11 @@ const client = new Discord.Client();
 
 const {
     onCreateGroup,
-  } = require('./src/services/bot/commands');
+} = require('./src/services/bot/commands');
 
 client.on("ready", () => {
     client.user.setActivity('!commands me');
 });
-
 
 client.on("message", message => {
     // Get arguments as !command arg
@@ -17,7 +16,7 @@ client.on("message", message => {
 
     switch (command) {
         case 'g!group':
-        return onCreateGroup(args);
+        return onCreateGroup(message);
 
         default:
         return null;
