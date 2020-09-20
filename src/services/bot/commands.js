@@ -30,7 +30,7 @@ const onCreateGroup = async (message) => {
     const filter = (reaction) => {
         return reaction.emoji.name === '✌';
     };
-    const collector = message.createReactionCollector(filter, { max: 10, time: 1000 });
+    const collector = message.createReactionCollector(filter, { max: 10, time: 604800000 });
     collector.on('collect', (reaction, user) => {
         console.log(`Collected ${reaction.emoji.name} from ${user.id}`);
     });
