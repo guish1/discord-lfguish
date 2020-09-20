@@ -28,17 +28,6 @@ const onCreateGroup = async (message) => {
     })
 
     const filter = (reaction) => {
-        return reaction.emoji.name === '✌';
-    };
-    const collector = message.createReactionCollector(filter, { max: 10, time: 604800000 });
-    collector.on('collect', (reaction, user) => {
-        if (reaction.emoji.name === '✌') {
-            const member = message.mentions.members.first();
-            member.roles.add(role_id);
-        }
-    });
-
-    const filter = (reaction) => {
         return ['✌'].includes(reaction.emoji.name);
     };
     message.awaitReactions(filter, { max: 10, time: 604800000, errors: ['time'] })
