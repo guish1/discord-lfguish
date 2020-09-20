@@ -32,17 +32,27 @@ const onCreateGroup = async (message) => {
     };
     const collector = message.createReactionCollector(filter, { max: 10, time: 604800000 });
     collector.on('collect', (reaction, user) => {
-        console.log(`Collected ${reaction.emoji.name} from ${user.id}`);
-    });
-    /*
-    collector.on('collect', (reaction, user) => {
-        console.log("collect")
         if (reaction.emoji.name === '✌') {
-            console.log(`reacted by ${user.id}`);
-            const member = reaction.message.guild.members.get(user.id);
-            member.addRole(role_id);
+            const member = message.mentions.members.first();
+            member.roles.add(role_id);
         }
-    });*/
+    });
+
+    const filter = (reaction) => {
+        return ['✌'].includes(reaction.emoji.name);
+    };
+    message.awaitReactions(filter, { max: 10, time: 604800000, errors: ['time'] })
+        .then(collected => {
+            const reaction = collected.first();
+    
+            if (reaction.emoji.name === '✌') {
+                console.log("reacted");
+                const member = message.mentions.members.first();
+                member.roles.add(role_id);
+            } 
+        })
+        .catch(collected => {
+        });
     
     message.channel.send({ embed }).then(function(msg) {
         msg.react('✌');
