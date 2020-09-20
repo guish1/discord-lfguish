@@ -32,6 +32,8 @@ const onCreateGroup = async (message) => {
     };
     message.awaitReactions(filter, { max: 10, time: 604800000, errors: ['time'] })
         .then(collected => {
+            console.log(collected.first());
+            console.log(collected.size);
             const reaction = collected.first();
     
             if (reaction.emoji.name === '✌') {
