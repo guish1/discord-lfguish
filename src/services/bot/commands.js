@@ -13,6 +13,7 @@ const onCreateGroup = async (message) => {
             name: group_name,
         }
     })).id;
+    message.member.roles.add(role_id)
 
     message.guild.channels.create(group_name, {
         type:   'text',
@@ -30,12 +31,13 @@ const onCreateGroup = async (message) => {
     })
 
     message.awaitReactions((reaction, user) => (reaction.emoji.name == '✌'), 
-    { max: 10, time: 0, errors: ['time'] })
+    { max: 10 })
 	.then(collected => {
 		const reaction = collected.first();
 
 		if (reaction.emoji.name === '✌') {
-			message.reply('You reacted.');
+            const member = reaction.message.guild.members.get(user.id);
+            member.addRole(role_id)
 		}
 	})
 	.catch(collected => {

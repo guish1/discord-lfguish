@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const client = new Discord.Client(); 
 
+const { getGames } = require('../lfguish/games');
+
 const {
     onCreateGroup,
 } = require('./src/services/bot/commands');
@@ -16,7 +18,7 @@ client.on("message", message => {
 
     switch (command) {
         case 'g!group':
-        return onCreateGroup(message);
+            return onCreateGroup(message);
 
         default:
         return null;
