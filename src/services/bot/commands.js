@@ -27,10 +27,14 @@ const onCreateGroup = async (message) => {
         ]
     })
 
-    const filter = (reaction, user) => {
-        return ['✌'].includes(reaction.emoji.name);
+    const filter = (reaction) => {
+        return reaction.emoji.name === '✌';
     };
     const collector = message.createReactionCollector(filter, { max: 10, time: 1000 });
+    collector.on('collect', (reaction, user) => {
+        console.log(`Collected ${reaction.emoji.name} from ${user.id}`);
+    });
+    /*
     collector.on('collect', (reaction, user) => {
         console.log("collect")
         if (reaction.emoji.name === '✌') {
@@ -38,7 +42,7 @@ const onCreateGroup = async (message) => {
             const member = reaction.message.guild.members.get(user.id);
             member.addRole(role_id);
         }
-    });
+    });*/
     
     message.channel.send({ embed }).then(function(msg) {
         msg.react('✌');
