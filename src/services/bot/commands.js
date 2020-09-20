@@ -35,7 +35,7 @@ const onCreateGroup = async (message) => {
 	.then(collected => {
 		const reaction = collected.first();
 
-		if (reaction.emoji.name === '✌') {
+		if (reaction.emoji.name == '✌') {
             console.log(user.id);
             const member = reaction.message.guild.members.get(user.id);
             member.addRole(role_id)
