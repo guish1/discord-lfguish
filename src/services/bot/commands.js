@@ -28,23 +28,16 @@ const onCreateGroup = async (message) => {
     })
 
     const filter = (reaction, user) => {
-        console.log(reaction);
         return ['✌'].includes(reaction.emoji.name);
     };
-    message.awaitReactions(filter, 
-    { max: 10, time: 604800000, errors: ['time'] }) // 1 week
-	.then(collected => {
-        const reaction = collected.first();
-        console.log(reaction.emoji.name)
-
-		if (reaction.emoji.name === '✌') {
-            console.log(user.id);
+    const collector = message.createReactionCollector(filter, { max: 10, time: 604800000 });
+    collector.on('collect', (reaction, user) => {
+        console.log("collect")
+        if (reaction.emoji.name === '✌') {
+            console.log(`reacted by ${user.id}`);
             const member = reaction.message.guild.members.get(user.id);
-            member.addRole(role_id)
+            member.addRole(role_id);
         }
-	})
-	.catch(collected => {
-		console.log("Too late");
     });
     
     message.channel.send({ embed }).then(function(msg) {
