@@ -31,11 +31,12 @@ const onCreateGroup = async (message) => {
     })
 
     message.awaitReactions((reaction, user) => (reaction.emoji.name == '✌'), 
-    { max: 10 })
+    { max: 10, time: 604800000 }) // 1 week
 	.then(collected => {
 		const reaction = collected.first();
 
 		if (reaction.emoji.name === '✌') {
+            console.log(user.id);
             const member = reaction.message.guild.members.get(user.id);
             member.addRole(role_id)
 		}
