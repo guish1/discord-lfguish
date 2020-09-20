@@ -52,7 +52,7 @@ const onCreateGroup = async (message) => {
 
     const collector = message.createReactionCollector(filter, { time: 15000 });
     collector.on('collect', (reaction, user) => {
-        console.log(`Collected ${reaction.emoji.name} from ${user.id}`);
+        message.reply(`Collected ${reaction.emoji.name} from ${user.id}`);
     });
 
     message.channel.send({ embed }).then(function(msg) {
