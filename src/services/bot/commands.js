@@ -4,9 +4,6 @@ const onCreateGroup = async (message) => {
     const embed = createMessageEmbed('Create group');
     const group_name = "group-1";
     embed.addField('Name', group_name);
-    message.channel.send({ embed }).then(function(msg) {
-        msg.react('✌');
-    });
 
     const role_id = (await message.guild.roles.create({
         data: {
@@ -30,23 +27,32 @@ const onCreateGroup = async (message) => {
         ]
     })
 
-    message.awaitReactions((reaction, user) => (reaction.emoji.name == '✌'), 
-    { max: 10, time: 604800000 }) // 1 week
+    const filter = (reaction, user) => {
+        console.log(reaction);
+        return ['✌'].includes(reaction.emoji.name);
+    };
+    message.awaitReactions(filter, 
+    { max: 10, time: 604800000, errors: ['time'] }) // 1 week
 	.then(collected => {
-		const reaction = collected.first();
+        const reaction = collected.first();
+        console.log(reaction.emoji.name)
 
-		if (reaction.emoji.name == '✌') {
+		if (reaction.emoji.name === '✌') {
             console.log(user.id);
             const member = reaction.message.guild.members.get(user.id);
             member.addRole(role_id)
-		}
+        }
 	})
 	.catch(collected => {
-		
-	});
+		console.log("Too late");
+    });
+    
+    message.channel.send({ embed }).then(function(msg) {
+        msg.react('✌');
+    });
   };
 
 module.exports = {
     onCreateGroup,
-  };
+};
   
